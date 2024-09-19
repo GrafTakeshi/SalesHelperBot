@@ -87,7 +87,8 @@ async def registr_team(message: Message, state: FSMContext):
         name = data["name"]
         sname = data["sname"]
         lname = data["lname"]
-        await registr_new_user_data(message, state, name, sname, lname)
+        team = data["team"]
+        await registr_new_user_data(message, state, name, sname, lname, team)
         inf = await get_info(message.from_user.id)
         await bot.send_message(chat_id=await get_sv_id(inf['team']), text=f'пользователь'
                                                                           f' {sname} {name}'

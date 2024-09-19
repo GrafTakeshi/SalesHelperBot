@@ -53,7 +53,7 @@ async def welcome(message: Message, state):
         await state.set_state(Welcome.invite)
 
 
-async def registr_new_user_data(message: Message, state, name, sname, lname):
+async def registr_new_user_data(message: Message, state, name, sname, lname, team):
     cid = message.from_user.id
     session = Session()
     inserted_id = Users(tg_user_id=cid)
@@ -61,7 +61,7 @@ async def registr_new_user_data(message: Message, state, name, sname, lname):
     session.flush()
     session.commit()
     q = UserProffile(tg_user_id=inserted_id.id, name=name, sname=sname,
-                     lname=lname, team=1, role=3, tt_code=1, status=False)
+                     lname=lname, team=team, role=3, tt_code=1, status=False)
     session.add(q)
     session.commit()
     session.close()
